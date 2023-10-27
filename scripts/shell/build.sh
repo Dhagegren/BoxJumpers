@@ -16,9 +16,10 @@ npx google-closure-compiler \
 --js "./../../src/scene/player/Player1.js" \
 --js "./../../src/scene/player/Player2.js" \
 --js "./../../src/scene/player/Player3.js" \
+--js "./../../src/scene/player/Player4.js" \
 --js "./../../src/scene/howToPlay/HowToPlay.js" \
 --js "./../../src/scene/Menu/Menus.js" \
 --js "./../../src/scene/Menu/Menu.js" \
 --js "./../../src/system/Main.js" \
 --js "./../../src/scope/Alias.js" \
---js_output_file "./../../dist/projekt.js";
+--js_output_file "./../../dist/BoxJumper.js";

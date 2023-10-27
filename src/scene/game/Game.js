@@ -13,7 +13,7 @@
  * 
  * Game scene.
  */
-projekt.scene.Game = function (numPlayers) {
+BoxJumper.scene.Game = function (numPlayers) {
 
   //--------------------------------------------------------------------------
   // Super call
@@ -28,6 +28,9 @@ projekt.scene.Game = function (numPlayers) {
   this.nrOfPlayers = numPlayers;
   this.deathOrder = [];
 
+  this.gameRunning = true;
+
+
 
   /**
    * Calls the constructor method of the super class.
@@ -39,8 +42,8 @@ projekt.scene.Game = function (numPlayers) {
 // Inheritance
 //------------------------------------------------------------------------------
 
-projekt.scene.Game.prototype = Object.create(rune.scene.Scene.prototype);
-projekt.scene.Game.prototype.constructor = projekt.scene.Game;
+BoxJumper.scene.Game.prototype = Object.create(rune.scene.Scene.prototype);
+BoxJumper.scene.Game.prototype.constructor = BoxJumper.scene.Game;
 
 //------------------------------------------------------------------------------
 // Override public prototype methods (ENGINE)
@@ -52,10 +55,8 @@ projekt.scene.Game.prototype.constructor = projekt.scene.Game;
  *
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.init = function () {
+BoxJumper.scene.Game.prototype.init = function () {
   rune.scene.Scene.prototype.init.call(this);
-
-
 
   this.boxes = this.groups.create(this.stage);
   this.players = this.groups.create(this.stage);
@@ -63,8 +64,8 @@ projekt.scene.Game.prototype.init = function () {
 
   this.initGamepad();
   this.initBackground();
-  this.timers = new rune.timer.Timers()
   this.timers.create(3, true);
+
   this.initPlayers(this.nrOfPlayers);
 };
 
@@ -77,10 +78,11 @@ projekt.scene.Game.prototype.init = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.gameOver = function (winner) {
-  this.application.scenes.load([
-    new projekt.scene.GameOver(winner)
-  ]);
+BoxJumper.scene.Game.prototype.gameOver = function (winner) {
+  this.gameRunning = false;
+   this.application.scenes.load([
+     new BoxJumper.scene.GameOver(winner)
+   ]);
 }
 
 
@@ -91,7 +93,7 @@ projekt.scene.Game.prototype.gameOver = function (winner) {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initBox = function () {
+BoxJumper.scene.Game.prototype.initBox = function () {
   var lowestColumns = [];
   var i;
   var lowestCount = Infinity;
@@ -125,7 +127,7 @@ projekt.scene.Game.prototype.initBox = function () {
 
   var randomValue = this.posArr[randCol];
 
-  var box = new projekt.scene.Box(randomValue, 0, 32, 32, "box", this.boxes);
+  var box = new BoxJumper.scene.Box(randomValue, 0, 32, 32, "box", this.boxes);
   this.boxes.addMember(box);
   this.stage.addChild(box);
 
@@ -141,7 +143,7 @@ projekt.scene.Game.prototype.initBox = function () {
   if (fullColumns.length >= 12) {
     this.gameOver();
     this.application.scenes.load([
-      new projekt.scene.Menu()
+      new BoxJumper.scene.Menu()
     ]);
   }
 };
@@ -155,11 +157,11 @@ projekt.scene.Game.prototype.initBox = function () {
  * @returns {undefined}
  * 
  */
-projekt.scene.Game.prototype.initBackground = function () {
+BoxJumper.scene.Game.prototype.initBackground = function () {
 
-  var background = new rune.display.Sprite(0, 0, 400, 250, "Bakgrund");
-  this.stage.addChild(background);
-  background.animation.create("idle", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2, true);
+  this.background = new rune.display.Sprite(0, 0, 400, 250, "Bakgrund");
+  this.stage.addChild(this.background);
+  this.background.animation.create("idle", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2, true);
 }
 
 
@@ -168,7 +170,7 @@ projekt.scene.Game.prototype.initBackground = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initGamepad = function () {
+BoxJumper.scene.Game.prototype.initGamepad = function () {
 
   this.gamepad = this.gamepads.get(0);
 
@@ -184,10 +186,10 @@ projekt.scene.Game.prototype.initGamepad = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initPlayer1 = function () {
+BoxJumper.scene.Game.prototype.initPlayer1 = function () {
 
   var gamepad = this.gamepads.get(0);
-  var player1 = new projekt.scene.Player1(this.boxes, gamepad, this.players);
+  var player1 = new BoxJumper.scene.Player1(this.boxes, gamepad, this.players);
   player1.setAnimation();
   this.players.addMember(player1);
   this.stage.addChild(player1);
@@ -199,10 +201,10 @@ projekt.scene.Game.prototype.initPlayer1 = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initPlayer2 = function () {
+BoxJumper.scene.Game.prototype.initPlayer2 = function () {
 
   var gamepad = this.gamepads.get(1);
-  var player2 = new projekt.scene.Player2(this.boxes, gamepad, this.players);
+  var player2 = new BoxJumper.scene.Player2(this.boxes, gamepad, this.players);
   player2.setAnimation();
   this.players.addMember(player2);
   this.stage.addChild(player2);
@@ -216,9 +218,9 @@ projekt.scene.Game.prototype.initPlayer2 = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initPlayer3 = function () {
+BoxJumper.scene.Game.prototype.initPlayer3 = function () {
   var gamepad = this.gamepads.get(2);
-  var player3 = new projekt.scene.Player3(this.boxes, gamepad, this.players);
+  var player3 = new BoxJumper.scene.Player3(this.boxes, gamepad, this.players);
   player3.setAnimation();
   this.players.addMember(player3);
   this.stage.addChild(player3);
@@ -230,9 +232,9 @@ projekt.scene.Game.prototype.initPlayer3 = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.initPlayer4 = function () {
+BoxJumper.scene.Game.prototype.initPlayer4 = function () {
   var gamepad = this.gamepads.get(3);
-  var player4 = new projekt.scene.Player4(this.boxes, gamepad, this.players);
+  var player4 = new BoxJumper.scene.Player4(this.boxes, gamepad, this.players);
   player4.setAnimation();
   this.players.addMember(player4);
   this.stage.addChild(player4);
@@ -248,7 +250,7 @@ projekt.scene.Game.prototype.initPlayer4 = function () {
  * @returns {undefined}
  * 
  */
-projekt.scene.Game.prototype.initPlayers = function () {
+BoxJumper.scene.Game.prototype.initPlayers = function () {
 
   switch (this.nrOfPlayers) {
     case 0:
@@ -286,7 +288,7 @@ projekt.scene.Game.prototype.initPlayers = function () {
  *
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.update = function (step) {
+BoxJumper.scene.Game.prototype.update = function (step) {
   rune.scene.Scene.prototype.update.call(this, step);
 
 
@@ -297,9 +299,13 @@ projekt.scene.Game.prototype.update = function (step) {
     this.timers.m_timers[0].restart();
   }
 
+  
+
 
   var aliveCount = 0;
   var lastAlivePlayer = null;
+
+  if(this.gameRunning){
 
   // Check the status of each player
   this.players.forEachMember(function (player) {
@@ -314,9 +320,16 @@ projekt.scene.Game.prototype.update = function (step) {
     // Perform actions for end of the game, e.g., display winner, end match, etc.
     lastAlivePlayer.canControl = false;
 
-    setTimeout(this.gameOver.bind(this, lastAlivePlayer.name), 2500);
+
+    this.timers.create({
+      duration: 2500,
+      scope: this,
+      onComplete: this.gameOver.bind(this, lastAlivePlayer.name)
+    });
+
     return; // Exit the update function
   }
+}
 
 };
 
@@ -328,8 +341,30 @@ projekt.scene.Game.prototype.update = function (step) {
  * exist when the scene is destroyed. The process is performed in order to 
  * avoid memory leaks.
  *
+ * Removes all graphic objects such as players and boxes and other references.
+ * 
+ * 
  * @returns {undefined}
  */
-projekt.scene.Game.prototype.dispose = function () {
+BoxJumper.scene.Game.prototype.dispose = function () {
   rune.scene.Scene.prototype.dispose.call(this);
+
+
+
+  this.boxes.forEachMember(function (box) {
+    box.dispose();
+    box =null;
+  });
+
+  this.players.forEachMember(function(player){
+    player.dispose();
+    player = null;
+  })
+
+   this.background = null;
+   this.posArr = null;
+   this.columnsCounts = null;
+   this.gamepad = null;
+   this.nrOfPlayers = null;;
+   this.deathOrder = null;
 };

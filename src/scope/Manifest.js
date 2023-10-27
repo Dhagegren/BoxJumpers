@@ -5,9 +5,9 @@
 /**
  * The application namespace.
  * 
- * @namespace projekt
+ * @namespace BoxJumper
  */
-var projekt = function() {
+var BoxJumper = function() {
 
     //--------------------------------------------------------------------------
     // Public static scope
@@ -31,7 +31,7 @@ var projekt = function() {
      * such as resource files.
      *
      * @namespace data
-     * @memberof projekt
+     * @memberof BoxJumper
      * @since 1.0
      */
     m_this.data = {};
@@ -42,7 +42,7 @@ var projekt = function() {
      * application.
      *
      * @namespace scene
-     * @memberof projekt
+     * @memberof BoxJumper
      * @since 1.0
      */
     m_this.scene = {};
@@ -51,7 +51,7 @@ var projekt = function() {
      * This package contains the application's most vital classes.
      *
      * @namespace system
-     * @memberof projekt
+     * @memberof BoxJumper
      * @since 1.0
      */
     m_this.system = {};
@@ -77,8 +77,8 @@ var projekt = function() {
  *
  * @ignore
  */
-projekt.bootstrap = function(callback) {
-    var app = new projekt.system.Main();
+BoxJumper.bootstrap = function(callback) {
+    var app = new BoxJumper.system.Main();
         app.start(callback);
         
     return app;

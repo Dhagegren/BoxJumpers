@@ -6,8 +6,8 @@
  * Exports the application to the global scope.
  */
 if (typeof window !== "undefined") {
-    if (typeof window.projekt === "undefined") {
-        window.projekt = projekt;
+    if (typeof window.BoxJumper === "undefined") {
+        window.BoxJumper = BoxJumper;
     }
 }
 
@@ -16,5 +16,5 @@ if (typeof window !== "undefined") {
  * Rune OS.
  */
 if (typeof window !== "undefined" && typeof window.runeos === "object") {
-    window.runeos.install(projekt);
+    window.runeos.install(BoxJumper);
 }

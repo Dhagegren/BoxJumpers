@@ -13,7 +13,7 @@
  * 
  * HowToPlay scene.
  */
-projekt.scene.HowToPlay = function () {
+BoxJumper.scene.HowToPlay = function () {
 
 
     this.gamepad = null;
@@ -21,8 +21,8 @@ projekt.scene.HowToPlay = function () {
     rune.scene.Scene.call(this);
 }
 
-projekt.scene.HowToPlay.prototype = Object.create(rune.scene.Scene.prototype);
-projekt.scene.HowToPlay.prototype.constructor = projekt.scene.HowToPlay;
+BoxJumper.scene.HowToPlay.prototype = Object.create(rune.scene.Scene.prototype);
+BoxJumper.scene.HowToPlay.prototype.constructor = BoxJumper.scene.HowToPlay;
 
 
 /**
@@ -31,7 +31,7 @@ projekt.scene.HowToPlay.prototype.constructor = projekt.scene.HowToPlay;
  * 
  * @returns {undefined}
  */
-projekt.scene.HowToPlay.prototype.init = function () {
+BoxJumper.scene.HowToPlay.prototype.init = function () {
     rune.scene.Scene.prototype.init.call(this);
 
     this.initBackground();
@@ -45,7 +45,7 @@ projekt.scene.HowToPlay.prototype.init = function () {
  * 
  * @returns {undefined}
  */
-projekt.scene.HowToPlay.prototype.initGamepad = function () {
+BoxJumper.scene.HowToPlay.prototype.initGamepad = function () {
     this.gamepad = this.gamepads.get(0);
 }
 
@@ -57,7 +57,7 @@ projekt.scene.HowToPlay.prototype.initGamepad = function () {
  * @returns {undefined}
  * 
  */
-projekt.scene.HowToPlay.prototype.initBackground = function(){
+BoxJumper.scene.HowToPlay.prototype.initBackground = function(){
     var howtoplay = new rune.display.Sprite(0, 0, 400, 250, "Howtoplay");
     this.stage.addChild(howtoplay);
     howtoplay.animation.create("idle", [0, 1, 2], 3, true);
@@ -74,13 +74,13 @@ projekt.scene.HowToPlay.prototype.initBackground = function(){
  *
  * @returns {undefined}
  */
-projekt.scene.HowToPlay.prototype.update = function (step) {
+BoxJumper.scene.HowToPlay.prototype.update = function (step) {
     rune.scene.Scene.prototype.update.call(this, step);
 
 
     if (this.gamepad.pressed(9)) {
         this.application.scenes.load([
-            new projekt.scene.Menu()
+            new BoxJumper.scene.Menu()
         ]);
     }
 

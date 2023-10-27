@@ -10,7 +10,7 @@
  * 
  * Box scene.
  */
-projekt.scene.Box = function (x, y, width, height, resource, boxes) {
+BoxJumper.scene.Box = function (x, y, width, height, resource, boxes) {
 
 
   rune.display.Sprite.call(this, x, y, width, height, resource);
@@ -20,8 +20,8 @@ projekt.scene.Box = function (x, y, width, height, resource, boxes) {
   this.boxes = boxes;
 }
 
-projekt.scene.Box.prototype = Object.create(rune.display.Sprite.prototype);
-projekt.scene.Box.prototype.constructor = projekt.scene.Box;
+BoxJumper.scene.Box.prototype = Object.create(rune.display.Sprite.prototype);
+BoxJumper.scene.Box.prototype.constructor = BoxJumper.scene.Box;
 
 
 
@@ -32,7 +32,7 @@ projekt.scene.Box.prototype.constructor = projekt.scene.Box;
  * 
  * @returns {undefined}
  */
-projekt.scene.Box.prototype.checkBoxHit = function () {
+BoxJumper.scene.Box.prototype.checkBoxHit = function () {
 
   this.boxes.forEachMember(function (box) {
     this.hitTestAndSeparateObject(box, function () {
@@ -54,7 +54,7 @@ projekt.scene.Box.prototype.checkBoxHit = function () {
  *
  * @returns {undefined}
  */
-projekt.scene.Box.prototype.update = function (step) {
+BoxJumper.scene.Box.prototype.update = function (step) {
   rune.display.Sprite.prototype.update.call(this, step);
   this.checkBoxHit();
 

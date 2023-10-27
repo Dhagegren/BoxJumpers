@@ -13,7 +13,7 @@
  * 
  * Menus scene.
  */
-projekt.scene.Menus = function(){
+BoxJumper.scene.Menus = function(){
     rune.ui.VTMenu.call(this);
 
 }
@@ -21,11 +21,11 @@ projekt.scene.Menus = function(){
 /**
  * Function that runs once and does a call
  */
-projekt.scene.Menus.init = function(){
-    rune.ui.VTMenu.projekt.init.call(this);
+BoxJumper.scene.Menus.init = function(){
+    rune.ui.VTMenu.BoxJumper.init.call(this);
 
     
 }
 
-projekt.scene.Menus.prototype = Object.create(rune.ui.VTMenu.prototype);
-projekt.scene.Menus.prototype.constructor = projekt.scene.Menus;
+BoxJumper.scene.Menus.prototype = Object.create(rune.ui.VTMenu.prototype);
+BoxJumper.scene.Menus.prototype.constructor = BoxJumper.scene.Menus;

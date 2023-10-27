@@ -12,7 +12,7 @@
  * 
  * Entry point class.
  */
-projekt.system.Main = function() {
+BoxJumper.system.Main = function() {
 
     //--------------------------------------------------------------------------
     // Super call
@@ -22,11 +22,11 @@ projekt.system.Main = function() {
      * Extend (Rune) Application.
      */
     rune.system.Application.call(this, {
-        developer: "com.vectorpanic",
-        app: "projekt",
+        developer: "com.danieldev",
+        app: "BoxJumper",
         build: "1.0.0",
-        scene: projekt.scene.Menu,
-        resources: projekt.data.Requests,
+        scene: BoxJumper.scene.Menu,
+        resources: BoxJumper.data.Requests,
         useGamepads:true,
         useKeyboard:true,
         framerate: 30,
@@ -38,5 +38,5 @@ projekt.system.Main = function() {
 // Inheritance
 //------------------------------------------------------------------------------
 
-projekt.system.Main.prototype = Object.create(rune.system.Application.prototype);
-projekt.system.Main.prototype.constructor = projekt.system.Main;
+BoxJumper.system.Main.prototype = Object.create(rune.system.Application.prototype);
+BoxJumper.system.Main.prototype.constructor = BoxJumper.system.Main;
